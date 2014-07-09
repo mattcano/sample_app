@@ -12,6 +12,15 @@ describe "Authentication" do
     it { should have_title('Sign in') }
   end
 
+  describe "header when not signed in" do
+    before {visit root_path}
+
+    it { should_not have_link('Users',       href: users_path) }
+    it { should_not have_link('Profile')}
+    it { should_not have_link('Settings')}
+    it { should_not have_link('Sign out',    href: signout_path) }
+  end
+
   # Using Capybara to click on button and listen to response
   describe "signin" do
     before { visit signin_path }
